@@ -1,3 +1,4 @@
+require('dotenv').config();
 import * as express from 'express';
 import * as fs from 'fs';
 
@@ -82,6 +83,14 @@ app.get('/v3/reels/user/comments', (req, res) => {
     });
 });
 
-app.listen(3001, () => {
-    console.log('server is listening');
+const { exec } = require('child_process');
+
+exec('ifconfig | grep 192.168.', (err: any, stdout: any, stderr: any) => {
+    let s = stdout.toString();
+    s = s.substring(s.indexOf('192.168'));
+    let ip = s.substring(0, s.indexOf(' '));
+
+    app.listen(process.env.PORT || 3000, () => {
+        console.log('server is listening on '+ ip + ':' + (process.env.PORT || 3000));
+    });
 });
