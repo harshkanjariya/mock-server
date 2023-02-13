@@ -17,6 +17,10 @@ app.use(async (req, res, next) => {
 });
 
 app.get('/v1/users/self', (req, res) => {
+    // res.send({
+    //     success: false,
+    //     data: {}
+    // });
     res.send({
         success: true,
         data: {
@@ -38,6 +42,17 @@ app.get('/v3/reels/user/feedposts', (req: express.Request, res: express.Response
         }
     });
 });
+
+app.get('/v3/reels/user/unauth-feedposts', (req: express.Request, res: express.Response) => {
+    const list = require('./data/feedposts.json');
+    const shortList = [...Array(5)].map((o: any, i: number) => ({...list[i]}));    
+    
+    res.send({
+        success: true,
+        data: shortList,
+    });
+});
+
 app.get('/v3/reels/user/savedFeedposts', (req: express.Request, res: express.Response) => {
     const list = require('./data/feedposts.json');
     const savedList = list.filter((o: any) => o.personal.saved);
