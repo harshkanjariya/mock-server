@@ -45,7 +45,7 @@ app.get('/v3/reels/user/feedposts', (req: express.Request, res: express.Response
 
 app.get('/v3/reels/user/unauth-feedposts', (req: express.Request, res: express.Response) => {
     const list = require('./data/feedposts.json');
-    const shortList = [...Array(5)].map((o: any, i: number) => ({...list[i]}));    
+    const shortList = [...Array(5)].map((o: any, i: number) => ({...list[i]}));
     
     res.send({
         success: true,
@@ -53,7 +53,7 @@ app.get('/v3/reels/user/unauth-feedposts', (req: express.Request, res: express.R
     });
 });
 
-app.get('/v3/reels/user/savedFeedposts', (req: express.Request, res: express.Response) => {
+app.get('/v3/reels/user/saved-feed-posts', (req: express.Request, res: express.Response) => {
     const list = require('./data/feedposts.json');
     const savedList = list.filter((o: any) => o.personal.saved);
     let skip = parseInt(req.query.skip?.toString() || '0');
