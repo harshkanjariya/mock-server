@@ -44,13 +44,13 @@ app.get('/v3/reels/users/feedposts', (req: express.Request, res: express.Respons
 });
 app.get('/v3/reels/users/feedposts/:feedpostId', (req: express.Request, res: express.Response) => {
     const list = require('./data/feedposts.json');
+    console.log('index.ts > 47', req.params);
     const obj = list.filter((o: any) => o.feedpostId === req.params.feedpostId);
     res.send({
         success: true,
         data: obj[0]
     });
 });
-
 app.get('/v3/reels/users/unauth-feedposts', (req: express.Request, res: express.Response) => {
     const list = require('./data/feedposts.json');
     const shortList = [...Array(5)].map((o: any, i: number) => ({...list[i]}));
@@ -60,7 +60,6 @@ app.get('/v3/reels/users/unauth-feedposts', (req: express.Request, res: express.
         data: shortList,
     });
 });
-
 app.get('/v3/reels/users/saved-feed-posts', (req: express.Request, res: express.Response) => {
     const list = require('./data/feedposts.json');
     const savedList = list.filter((o: any) => o.personal.saved);
@@ -77,8 +76,7 @@ app.get('/v3/reels/users/saved-feed-posts', (req: express.Request, res: express.
         }
     });
 });
-
-app.get('/v3/reels/users/creator/:creatorId', (req, res) => {
+app.get('/v3/reels/users/creators/:creatorId', (req, res) => {
     let reels = require('./data/feedposts.json');
     reels = reels.map((o:any)=>_.pick(o, 'feedpostId', 'description', 'views', 'thumbnail'));
 
@@ -94,12 +92,14 @@ app.get('/v3/reels/users/creator/:creatorId', (req, res) => {
             totalViews: reels.map((o: any)=>o.views).reduce((a:number,b:number)=>a+b),
             totalFeedposts: reels.length,
             totalLikes: reels.map((o: any)=>o.views).reduce((a:number,b:number)=>a+b),
-            avatar: 'http://picsum.photos/200',
+            avatar: 'http://picsum.photos/500',
             feedpostSubject: 'Javascript',
+            feedpostBiodata: `
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque tempor fermentum. Nunc ut blandit augue. Curabitur enim odio, maximus id mauris pretium, bibendum vehicula erat. Duis lorem elit, aliquam et sem eu, vestibulum sollicitudin metus. Sed id sapien non turpis pharetra faucibus. Duis faucibus justo purus, at malesuada dolor varius sed. Phasellus ex elit, sagittis at leo quis, auctor porttitor quam. Curabitur consectetur tellus leo, sit amet porta leo aliquet in. Phasellus suscipit consectetur arcu sit amet pellentesque. Donec faucibus auctor elit sit amet gravida. Pellentesque nec tellus magna. Nam ornare viverra turpis at gravida.
+            Nulla vestibulum auctor tincidunt. Donec efficitur nisl vitae magna mattis, eu ultricies quam auctor. Pellentesque tempus sollicitudin lacus, et tincidunt dui varius ut. Phasellus placerat tincidunt sem in elementum. Sed fringilla urna ut urna tincidunt, vitae placerat nisi ultricies. Sed mattis placerat luctus. Cras sed laoreet orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean facilisis non urna quis fermentum. Integer consequat suscipit interdum.`,
         }
     });
 });
-
 app.post('/v3/reels/users/bookmark', (req, res) => {
     const list = require('./data/feedposts.json');
     for (let i = 0; i < list.length; i++) {
@@ -122,7 +122,6 @@ app.post('/v3/reels/users/bookmark', (req, res) => {
         success: true,
     });
 });
-
 app.get('/v3/reels/users/comments', (req, res) => {
     console.log(req.query);
     const list = require('./data/comments.json');
