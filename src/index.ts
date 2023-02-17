@@ -44,7 +44,6 @@ app.get('/v3/reels/users/feedposts', (req: express.Request, res: express.Respons
 });
 app.get('/v3/reels/users/feedposts/:feedpostId', (req: express.Request, res: express.Response) => {
     const list = require('./data/feedposts.json');
-    console.log('index.ts > 47', req.params);
     const obj = list.filter((o: any) => o.feedpostId === req.params.feedpostId);
     res.send({
         success: true,
@@ -123,9 +122,9 @@ app.post('/v3/reels/users/bookmark', (req, res) => {
     });
 });
 app.get('/v3/reels/users/comments', (req, res) => {
-    console.log(req.query);
     const list = require('./data/comments.json');
     const filteredList = list.filter((o: any) => o.typeId === req.query.feedpostId);
+    console.log('index.ts > 126', filteredList);
     let skip = parseInt(req.query.skip?.toString() || '0');
     let limit = parseInt(req.query.limit?.toString() || '0');
     res.send({

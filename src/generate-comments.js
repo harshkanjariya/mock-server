@@ -58,6 +58,7 @@ for (let i = 0; i < 1000; i++) {
     if (Math.random() > 0.5 && i > 0) {
         const dataIndex = random(0, data.length);
         d.parentId = data[dataIndex]._id;
+        data[dataIndex].childCommentCount = data[dataIndex].childCommentCount + 1;
     }
     data.push(d);
 }
