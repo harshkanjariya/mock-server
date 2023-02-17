@@ -28,7 +28,7 @@ app.get('/v1/users/self', (req, res) => {
         }
     });
 });
-app.get('/v3/reels/user/feedposts', (req: express.Request, res: express.Response) => {
+app.get('/v3/reels/users/feedposts', (req: express.Request, res: express.Response) => {
     const list = require('./data/feedposts.json');
     let skip = parseInt(req.query.skip?.toString() || '0');
     res.send({
@@ -42,37 +42,46 @@ app.get('/v3/reels/user/feedposts', (req: express.Request, res: express.Response
         }
     });
 });
+app.get('/v3/reels/users/feedposts/:feedpostId', (req: express.Request, res: express.Response) => {
+    const list = require('./data/feedposts.json');
+    const obj = list.filter((o: any) => o.feedpostId === req.params.feedpostId);
+    res.send({
+        success: true,
+        data: obj[0]
+    });
+});
 
-app.get('/v3/reels/user/unauth-feedposts', (req: express.Request, res: express.Response) => {
+app.get('/v3/reels/users/unauth-feedposts', (req: express.Request, res: express.Response) => {
     const list = require('./data/feedposts.json');
     const shortList = [...Array(5)].map((o: any, i: number) => ({...list[i]}));
-    
+
     res.send({
         success: true,
         data: shortList,
     });
 });
 
-app.get('/v3/reels/user/saved-feed-posts', (req: express.Request, res: express.Response) => {
+app.get('/v3/reels/users/saved-feed-posts', (req: express.Request, res: express.Response) => {
     const list = require('./data/feedposts.json');
     const savedList = list.filter((o: any) => o.personal.saved);
     let skip = parseInt(req.query.skip?.toString() || '0');
+    let limit = parseInt(req.query.limit?.toString() || '5');
     res.send({
         success: true,
         data: {
             pagination: {
                 skip,
-                limit: req.query.limit || 5,
+                limit,
             },
-            feedposts: savedList.slice(skip, skip + 5),
+            feedposts: savedList.slice(skip, skip + limit),
         }
     });
 });
 
-app.get('/v3/reels/user/creator/:creatorId', (req, res) => {
+app.get('/v3/reels/users/creator/:creatorId', (req, res) => {
     let reels = require('./data/feedposts.json');
     reels = reels.map((o:any)=>_.pick(o, 'feedpostId', 'description', 'views', 'thumbnail'));
-    
+
     res.send({
         success: true,
         data: {
@@ -91,7 +100,7 @@ app.get('/v3/reels/user/creator/:creatorId', (req, res) => {
     });
 });
 
-app.post('/v3/reels/user/bookmark', (req, res) => {
+app.post('/v3/reels/users/bookmark', (req, res) => {
     const list = require('./data/feedposts.json');
     for (let i = 0; i < list.length; i++) {
         if (list[i].feedpostId === req.body.feedpostId) {
@@ -110,14 +119,25 @@ app.post('/v3/reels/user/bookmark', (req, res) => {
     }
     fs.writeFileSync(__dirname + '/data/feedposts.json', JSON.stringify(list, null, 4));
     res.send({
-        success: false,
+        success: true,
     });
 });
 
-app.get('/v3/reels/user/comments', (req, res) => {
+app.get('/v3/reels/users/comments', (req, res) => {
+    console.log(req.query);
+    const list = require('./data/comments.json');
+    const filteredList = list.filter((o: any) => o.typeId === req.query.feedpostId);
+    let skip = parseInt(req.query.skip?.toString() || '0');
+    let limit = parseInt(req.query.limit?.toString() || '0');
     res.send({
         success: true,
-        data: {}
+        data: {
+            pagination: {
+                skip,
+                limit,
+            },
+            list: filteredList.slice(skip, skip + limit),
+        }
     });
 });
 
