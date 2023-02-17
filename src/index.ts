@@ -1,7 +1,8 @@
 require('dotenv').config();
-import * as express from 'express';
+import express from 'express';
 import * as fs from 'fs';
 import * as _ from 'lodash';
+import moment from 'moment';
 
 const app = express();
 
@@ -12,11 +13,11 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use(async (req, res, next) => {
+app.use(async (req: any, res: any, next: any) => {
     setTimeout(next, 1000);
 });
 
-app.get('/v1/users/self', (req, res) => {
+app.get('/v1/users/self', (req: any, res: any) => {
     // res.send({
     //     success: false,
     //     data: {}
@@ -123,8 +124,10 @@ app.post('/v3/reels/users/bookmark', (req, res) => {
 });
 app.get('/v3/reels/users/comments', (req, res) => {
     const list = require('./data/comments.json');
-    const filteredList = list.filter((o: any) => o.typeId === req.query.feedpostId);
-    console.log('index.ts > 126', filteredList);
+    let filteredList = list.filter((o: any) => o.typeId === req.query.feedpostId);
+    if (req.query.parentId) {
+        filteredList = filteredList.filter((o: any) => o.parentId === req.query.parentId);
+    }
     let skip = parseInt(req.query.skip?.toString() || '0');
     let limit = parseInt(req.query.limit?.toString() || '0');
     res.send({
@@ -136,6 +139,29 @@ app.get('/v3/reels/users/comments', (req, res) => {
             },
             list: filteredList.slice(skip, skip + limit),
         }
+    });
+});
+app.post('/v1/comments', (req, res) => {
+    const list = require('./data/comments.json');
+    const data = req.body;
+    data.createdBy = {
+        "_id": "id_2",
+        "firstName": "CC",
+        "lastName": "name",
+        "imageId": {
+            "_id": "98712309823",
+            "name": "string",
+            "type": "png",
+            "baseUrl": "https://picsum.photos",
+            "key": "/200"
+        }
+    };
+    data.createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
+    data.status = 'Active';
+    list.push(req.body);
+    fs.writeFileSync(__dirname + '/data/comments.json', JSON.stringify(list, null, 4));
+    res.send({
+        success: true,
     });
 });
 

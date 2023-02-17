@@ -42,7 +42,7 @@ function random(start, end) {
     return Math.floor(Math.random() * (end - start)) + start;
 }
 
-for (let i = 0; i < 1000; i++) {
+for (let i = 0; i < 10; i++) {
     const d = {...sample};
     let dStart = random(0, lorem.length);
     d.text = lorem.substring(dStart, random(dStart, lorem.length));
@@ -51,6 +51,7 @@ for (let i = 0; i < 1000; i++) {
     d.reportCount = random(0, parseInt('1' +'0'.repeat(random(1, 4))));
     d.rated = random(0, 2);
     d._id = d._id + i;
+    d.typeId = 'feed_post_' + random(0, 10);
     const startDate = (new Date('2023-02-01 00:00:00')).getTime();
     const endDate = Date.now();
     d.createdAt = new Date(random(startDate, endDate));

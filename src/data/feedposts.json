@@ -147,7 +147,7 @@
             "name": "CC",
             "avatar": "https://picsum.photos/200"
         },
-        "likes": 490,
+        "likes": 491,
         "comments": 73,
         "views": 24,
         "completeViews": 23,
@@ -156,7 +156,7 @@
         "createdAt": "2023-01-13T05:41:45.495Z",
         "updatedAt": "2023-01-13T10:53:34.582Z",
         "personal": {
-            "liked": false,
+            "liked": true,
             "saved": true
         }
     },
