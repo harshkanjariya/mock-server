@@ -182,7 +182,7 @@
             }
         },
         "status": "Active",
-        "childCommentCount": 0,
+        "childCommentCount": 1,
         "upVoteCount": 707,
         "downVoteCount": 895,
         "reportCount": 81,
@@ -273,5 +273,151 @@
         "createdAt": "2023-02-07T13:36:17.668Z",
         "rated": 1,
         "parentId": "comment_id_1"
+    },
+    {
+        "text": "yohoho",
+        "typeId": "feed_post_1",
+        "type": "REELS_COMMENT",
+        "parentId": "856_id_442",
+        "_id": "863_id_57",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-18 13:47:15",
+        "status": "Active"
+    },
+    {
+        "text": "abcd efgh ijkl",
+        "typeId": "feed_post_1",
+        "type": "REELS_COMMENT",
+        "parentId": "comment_id_6",
+        "_id": "892_id_718",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-18 13:49:01",
+        "status": "Active"
+    },
+    {
+        "text": "yo",
+        "typeId": "feed_post_1",
+        "type": "REELS_COMMENT",
+        "_id": "283_id_173",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-18 14:04:23",
+        "status": "Active"
+    },
+    {
+        "text": "heya",
+        "typeId": "feed_post_1",
+        "type": "REELS_COMMENT",
+        "parentId": "856_id_442",
+        "_id": "310_id_249",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-19 07:09:08",
+        "status": "Active"
+    },
+    {
+        "text": "a",
+        "typeId": "feed_post_1",
+        "type": "REELS_COMMENT",
+        "_id": "929_id_18",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-19 07:19:13",
+        "status": "Active",
+        "childCommentCount": 2
+    },
+    {
+        "text": "b",
+        "typeId": "feed_post_1",
+        "type": "REELS_COMMENT",
+        "parentId": "929_id_18",
+        "_id": "327_id_551",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-19 07:19:18",
+        "status": "Active"
+    },
+    {
+        "text": "c",
+        "typeId": "feed_post_1",
+        "type": "REELS_COMMENT",
+        "parentId": "929_id_18",
+        "_id": "720_id_667",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-19 07:19:37",
+        "status": "Active"
     }
 ]
