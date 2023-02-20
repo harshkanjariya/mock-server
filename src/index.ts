@@ -16,7 +16,8 @@ app.use(cors({
 app.use(express.json());
 
 app.use(async (req: any, res: any, next: any) => {
-  setTimeout(next, 1000);
+  // setTimeout(next, 1000);
+  next();
 });
 
 app.get('/v1/users/self', (req: any, res: any) => {
@@ -201,6 +202,21 @@ app.delete('/v1/comments/:commentId', (req, res) => {
   fs.writeFileSync(__dirname + '/data/comments.json', JSON.stringify(list, null, 4));
   res.send({
     success: true,
+  });
+});
+app.post('/v1/comments/add-rating', (req, res) => {
+  const list = require('./data/comments.json');
+  let updatedComment;
+  list.forEach((o: any, i: number) => {
+    if (o._id === req.body.typeId) {
+      o.rated = o.rated === 1 ? 0 : 1;
+      updatedComment = o;
+    }
+  });
+  fs.writeFileSync(__dirname + '/data/comments.json', JSON.stringify(list, null, 4));
+  res.send({
+    success: true,
+    data: updatedComment
   });
 });
 
