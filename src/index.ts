@@ -207,9 +207,14 @@ app.delete('/v1/comments/:commentId', (req, res) => {
 app.post('/v1/comments/add-rating', (req, res) => {
   const list = require('./data/comments.json');
   let updatedComment;
-  list.forEach((o: any, i: number) => {
+  list.forEach((o: any) => {
     if (o._id === req.body.typeId) {
       o.rated = o.rated === 1 ? 0 : 1;
+      if (o.rated) {
+        o.upVoteCount = o.upVoteCount ? (o.upVoteCount + 1) : 1;
+      } else {
+        o.upVoteCount = Math.max(o.upVoteCount ? (o.upVoteCount - 1) : 0);
+      }
       updatedComment = o;
     }
   });

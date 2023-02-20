@@ -107,7 +107,7 @@
         "satisfactoryRate": 0,
         "displayOrder": 1,
         "createdAt": "2023-02-14T08:09:08.924Z",
-        "rated": 0
+        "rated": 1
     },
     {
         "_id": "comment_id_4",
@@ -127,14 +127,14 @@
             }
         },
         "status": "Active",
-        "childCommentCount": 2,
+        "childCommentCount": 0,
         "upVoteCount": 812,
         "downVoteCount": 4,
         "reportCount": 93,
         "satisfactoryRate": 0,
         "displayOrder": 1,
         "createdAt": "2023-02-15T12:06:21.729Z",
-        "rated": 0
+        "rated": 1
     },
     {
         "_id": "comment_id_5",
@@ -798,5 +798,137 @@
         },
         "createdAt": "2023-02-19 13:13:35",
         "status": "Active"
+    },
+    {
+        "text": "yo",
+        "typeId": "feed_post_0",
+        "type": "REELS_COMMENT",
+        "parentId": "499_id_812",
+        "_id": "754_id_469",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-20 12:08:44",
+        "status": "Active"
+    },
+    {
+        "text": "hello",
+        "typeId": "feed_post_0",
+        "type": "REELS_COMMENT",
+        "parentId": "499_id_812",
+        "_id": "312_id_739",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-20 12:08:53",
+        "status": "Active"
+    },
+    {
+        "text": "lzxax",
+        "typeId": "feed_post_0",
+        "type": "REELS_COMMENT",
+        "parentId": "608_id_485",
+        "_id": "220_id_261",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-20 12:22:07",
+        "status": "Active",
+        "rated": 0,
+        "upVoteCount": null
+    },
+    {
+        "text": "hi",
+        "typeId": "feed_post_0",
+        "type": "REELS_COMMENT",
+        "parentId": "216_id_960",
+        "_id": "19_id_666",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-20 12:22:41",
+        "status": "Active",
+        "rated": 0,
+        "upVoteCount": null
+    },
+    {
+        "text": "hi",
+        "typeId": "feed_post_0",
+        "type": "REELS_COMMENT",
+        "_id": "145_id_969",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-20 12:24:52",
+        "status": "Active",
+        "rated": 1,
+        "upVoteCount": null
+    },
+    {
+        "text": "yooo",
+        "typeId": "feed_post_0",
+        "type": "REELS_COMMENT",
+        "_id": "144_id_451",
+        "createdBy": {
+            "_id": "id_2",
+            "firstName": "CC",
+            "lastName": "name",
+            "imageId": {
+                "_id": "98712309823",
+                "name": "string",
+                "type": "png",
+                "baseUrl": "https://picsum.photos",
+                "key": "/200"
+            }
+        },
+        "createdAt": "2023-02-20 12:41:21",
+        "status": "Active",
+        "rated": 0,
+        "upVoteCount": 0
     }
 ]
