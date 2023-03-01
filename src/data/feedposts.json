@@ -9,8 +9,8 @@
             "name": "akjshdfnkls akjfnsjsdf",
             "avatar": "https://picsum.photos/200"
         },
-        "likes": 10,
-        "comments": 3,
+        "likes": 9,
+        "comments": 9,
         "views": 200,
         "completeViews": 193,
         "incompleteViews": 7,
@@ -18,8 +18,8 @@
         "createdAt": "2023-01-13T05:41:45.495Z",
         "updatedAt": "2023-01-13T10:53:34.582Z",
         "personal": {
-            "liked": true,
-            "saved": true
+            "liked": false,
+            "saved": false
         }
     },
     {
@@ -42,7 +42,7 @@
         "updatedAt": "2023-01-13T10:53:34.582Z",
         "personal": {
             "liked": true,
-            "saved": true
+            "saved": false
         }
     },
     {

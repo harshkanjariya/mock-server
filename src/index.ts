@@ -28,11 +28,13 @@ app.get('/v1/users/self', (req: any, res: any) => {
   res.send({
     success: true,
     data: {
-      _id: 'abcdabcd',
+      firstName: 'John',
+      lastName: 'Doe',
+      id: 'id_2',
     }
   });
 });
-app.get('/v3/reels/users/feedposts', (req: express.Request, res: express.Response) => {
+app.get('/v3/reels/users/feed-posts', (req: express.Request, res: express.Response) => {
   const list = require('./data/feedposts.json');
   let skip = parseInt(req.query.skip?.toString() || '0');
   res.send({
@@ -46,24 +48,7 @@ app.get('/v3/reels/users/feedposts', (req: express.Request, res: express.Respons
     }
   });
 });
-app.get('/v3/reels/users/feedposts/:feedpostId', (req: express.Request, res: express.Response) => {
-  const list = require('./data/feedposts.json');
-  const obj = list.filter((o: any) => o.feedpostId === req.params.feedpostId);
-  res.send({
-    success: true,
-    data: obj[0]
-  });
-});
-app.get('/v3/reels/users/unauth-feedposts', (req: express.Request, res: express.Response) => {
-  const list = require('./data/feedposts.json');
-  const shortList = [...Array(5)].map((o: any, i: number) => ({...list[i]}));
-
-  res.send({
-    success: true,
-    data: shortList,
-  });
-});
-app.get('/v3/reels/users/saved-feed-posts', (req: express.Request, res: express.Response) => {
+app.get('/v3/reels/users/feed-posts/saved', (req: express.Request, res: express.Response) => {
   const list = require('./data/feedposts.json');
   const savedList: any[] = list.filter((o: any) => o.personal.saved);
   let skip = parseInt(req.query.skip?.toString() || '0');
@@ -78,6 +63,28 @@ app.get('/v3/reels/users/saved-feed-posts', (req: express.Request, res: express.
       },
       feedposts: savedList.filter((o: any, index: number) => index >= skip && index < skip + limit),
     }
+  });
+});
+app.post('/v3/reels/users/feed-posts/reports/:feedpostId', (req: express.Request, res: express.Response) => {
+  res.send({
+    success: Math.random() > 0.5,
+  });
+});
+app.get('/v3/reels/users/feed-posts/:feedpostId', (req: express.Request, res: express.Response) => {
+  const list = require('./data/feedposts.json');
+  const obj = list.filter((o: any) => o.feedpostId === req.params.feedpostId);
+  res.send({
+    success: true,
+    data: obj[0]
+  });
+});
+app.get('/v3/reels/users/unauth-feed-posts', (req: express.Request, res: express.Response) => {
+  const list = require('./data/feedposts.json');
+  const shortList = [...Array(5)].map((o: any, i: number) => ({...list[i]}));
+
+  res.send({
+    success: true,
+    data: shortList,
   });
 });
 app.get('/v3/reels/users/creators/:creatorId', (req, res) => {
@@ -130,25 +137,24 @@ app.post('/v3/reels/users/bookmark', (req, res) => {
     success: true,
   });
 });
-app.get('/v3/reels/users/comments', (req, res) => {
+app.get('/v1/comments/:typeId/comments', (req, res) => {
   const list = require('./data/comments.json');
-  let filteredList = list.filter((o: any) => o.typeId === req.query.feedpostId);
+  let filteredList = list.filter((o: any) => o.typeId === req.params.typeId);
   if (req.query.parentId) {
     filteredList = filteredList.filter((o: any) => o.parentId === req.query.parentId);
   } else {
     filteredList = filteredList.filter((o: any) => !o.parentId);
   }
+  filteredList.reverse();
   let skip = parseInt(req.query.skip?.toString() || '0');
   let limit = parseInt(req.query.limit?.toString() || '0');
   res.send({
     success: true,
-    data: {
-      pagination: {
-        skip,
-        limit,
-      },
-      list: filteredList.slice(skip, skip + limit),
-    }
+    pagination: {
+      skip,
+      limit,
+    },
+    data: filteredList.slice(skip, skip + limit),
   });
 });
 app.post('/v1/comments', (req, res) => {
@@ -157,8 +163,8 @@ app.post('/v1/comments', (req, res) => {
   data._id = random(0, 1000) + '_id_' + random(0, 1000);
   data.createdBy = {
     "_id": "id_2",
-    "firstName": "CC",
-    "lastName": "name",
+    "firstName": "John",
+    "lastName": "Doe",
     "imageId": {
       "_id": "98712309823",
       "name": "string",
@@ -204,12 +210,12 @@ app.delete('/v1/comments/:commentId', (req, res) => {
     success: true,
   });
 });
-app.post('/v1/comments/add-rating', (req, res) => {
+app.post('/v1/ratings/add-rating', (req, res) => {
   const list = require('./data/comments.json');
   let updatedComment;
   list.forEach((o: any) => {
     if (o._id === req.body.typeId) {
-      o.rated = o.rated === 1 ? 0 : 1;
+      o.rated = req.body.ratingValue;
       if (o.rated) {
         o.upVoteCount = o.upVoteCount ? (o.upVoteCount + 1) : 1;
       } else {
