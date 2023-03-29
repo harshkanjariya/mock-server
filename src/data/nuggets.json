@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "data": [
+    {
+      "_id": 124,
+      "kind": "TEXT",
+      "content": [
+        {
+          "kind": "H1",
+          "value": "This is first line"
+        },
+        {
+          "kind": "H2",
+          "value": "This is second line"
+        }
+      ]
+    },
+    {
+      "_id": 267485,
+      "kind": "IMAGE",
+      "title": "Hello image",
+      "imageURI": "https://picsum.photos/250"
+    },
+    {
+      "_id": 8172,
+      "kind": "TEXT",
+      "content": [
+        {
+          "kind": "H3",
+          "value": "Hello, this is nugget"
+        },
+        {
+          "kind": "IMG",
+          "value": "https://picsum.photos/300"
+        }
+      ]
+    }
+  ]
+}
